@@ -1,30 +1,62 @@
-import React, { Component } from 'react';
-import './main.css';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "./main.css";
+import { Image } from "antd";
+import img1 from "../../src/img/1.jpg";
+import img2 from "../../src/img/2.jpg";
+import img3 from "../../src/img/3.jpg";
+import Contents from "../../src/components/contents.js";
+//import { Route, Link, Switch } from "react-router-dom";
+//import queryString from "query-string";
 
-import { Route, Link, Switch } from 'react-router-dom';
-import queryString from 'query-string';
+//import axios from "axios";
 
-import axios from 'axios';
-
-class list extends Component {
+class List extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      data : [],
-      page : 1,
-      limit : 10,
-      all_page : [],
-    }
+      data: [
+        {
+          id: 1,
+          title: "우공회피쉬초밥 - 효자동 효성로 29번길 17",
+          contents:
+            "우공회피쉬초밥의 연어초밥 세트는 13500원이다. 타 초밥집에 비해 상당히 저렴하고 리뷰이벤트로 주는 콘치즈도 맛있다",
+          img: img1,
+          date: "2021-10-17",
+        },
+        {
+          id: 2,
+          title: "엽기떡볶이 크림 - 효자동 567-2번지 KR 106호",
+          contents:
+            "엽기떡볶이 크림은 엽떡에서 2021년 10월 6일에 출시한 신상이다. 가격은 13500원으로 기존 엽떡과 동일하다. 느끼한 맛을 원한다면 추천",
+          img: img2,
+          date: "2021-10-25",
+        },
+        {
+          id: 3,
+          title: "깡통갈비",
+          img: img3,
+          contents:
+            "깡통갈비는 sk뷰 형산강로에 위치한 소갈비집이다. 한판에 32000원이며 양념고기 생고기 종류가 두개이다. 된장라면과 비빔국수도 맛있다.",
+
+          date: "totomorrow",
+        },
+      ],
+      page: 1,
+      limit: 10,
+      all_page: [],
+    };
   }
 
-  componentWillMount() {
+  /* componentWillMount() {
     this._getListData();
     this._setPage();
-  }
+  }*/
 
-  _getListData = async function() {
+  /*_getListData = async function() {
     const { limit } = this.state;
     const page = this._setPage();
+
 
     // Board 테이블 데이터 전체 수
     const total_cnt = await axios('/get/board_cnt');
@@ -45,8 +77,9 @@ class list extends Component {
 
     this.setState({ data : total_list, all_page : page_arr })
   }
+  */
 
-  _changePage = function(el) {
+  /*_changePage = function(el) {
     this.setState({ page : el })
     sessionStorage.setItem('page', el);
 
@@ -61,52 +94,43 @@ class list extends Component {
 
     this.setState({ page : 1 })
     return 1;
-  }
-
+  }*/
   render() {
-    const list = this.state.data.data
-    const { all_page, page } = this.state;
+    const list = this.state.data;
+    // const { all_page, page } = this.state;
 
     return (
-      <div className='List'>
-
-        <div className='list_grid list_tit'>
+      <div className="List">
+        <div className="list_grid list_tit">
           <div> 제목 </div>
           <div> 조회수 </div>
-          <div className='acenter'> 날짜 </div>
+          <div className="acenter"> 날짜 </div>
         </div>
-
-          {list ? list.map( (el, key) => {
-            return(
-              <div className='list_grid list_data' key={key}>
-                <div> {el.title} </div>
-                <div> </div>
-                <div className='acenter'> {el.date.slice(0, 10)} </div>
-              </div>
-            )
-          })
-            : null }
-
-          <div className='paging_div'>
-            <div> </div>
-            <div>
-              <ul>
-                {all_page ? all_page.map( (el, key) => {
-                  return(
-                    el === page ? <li key={key} className='page_num'> <b> {el} </b> </li>
-                                : <li key={key} className='page_num' onClick={() => this._changePage(el)}> {el} </li>
-                  )
-                })
-                
-                : null}
-              </ul>
-            </div>
-            <div> </div>
-          </div>
-
+        {list
+          ? list.map((el, key) => {
+              const view_url = "/view/" + el.id;
+              return (
+                <>
+                  <div className="list_grid list_data" key={key}>
+                    <div>
+                      {" "}
+                      <Link to={view_url}> {el.title} </Link>{" "}
+                    </div>
+                    <div> </div>
+                    <div className="acenter"> {el.date.slice(0, 10)} </div>
+                    <Image.PreviewGroup>
+                      <Image width={400} height={500} src={el.img} />
+                    </Image.PreviewGroup>
+                  </div>
+                  <Contents txt={el.contents} />
+                  <div className="line" />
+                </>
+              );
+            })
+          : null}
       </div>
     );
   }
 }
 
-export default list;
+export default List;
