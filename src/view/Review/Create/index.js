@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from "react-bootstrap";
 import React, { Component } from 'react';
 import EXIF from 'exif-js'
+import './index.css'
 
 class ReviewCreateView extends Component {
     constructor(props) {
@@ -10,54 +11,49 @@ class ReviewCreateView extends Component {
             file: null,
             wtmX: null,
             wtmY: null,
+            imagePreView: null,
+
+            selectedFiles: null,
         }
     }
-
-    readMultipleImage(input) {
-        var viewMultipleImage = null;
-
-        if (input.files) {
-            console.log(input.filse);
-
-            const fileArr = Array.from(input.files);
-
-            // const $colDiv1 = document.createElement("div")
-            // const $colDiv2 = document.createElement("div")
-            // $colDiv1.classList.add("column")
-            // $colDiv2.classList.add("column")
-
-
-            viewMultipleImage = fileArr.forEach((file, index) => {
-                const reader = new FileReader()
-                var imgsrc = null;
-
-
-                reader.onload = e => {
-                    imgsrc = e.target.result;
-
-                    // $imgDiv.style.width = ($img.naturalWidth) * 0.2 + "px"
-                    // $imgDiv.style.height = ($img.naturalHeight) * 0.2 + "px"
-                }
-
-                console.log(file.name);
-
-                reader.readAsDataURL(file)
-
-                return (
-                    <div style={{}}>
-                        <img className="image" src={imgsrc}></img>
-                        <label className="image-label">{file.name}</label>
-                    </div>
-                );
-            })
+    componentDidUpdate = prevState => {
+        if (prevState.selectedFiles !== this.state.selectedFiles) {
+            this.renderPreviews();
         }
+    };
 
-        return (
-            <div id="multipleImageContainer" >
-                {viewMultipleImage}
-            </div>
-        );
-    }
+    renderPreviews = () => {
+        const selectedFiles = this.state.selectedFiles;
+        console.log(selectedFiles);
+        const previewContainer = document.getElementById("preview-container");
+        for (let i = 0; i < selectedFiles.length; i++) {
+            const preview = document.createElement("img");
+            preview.id = `preview_${i}`;
+            preview.style.height = "200px";
+            preview.style.padding = "10px";
+            preview.style.margin = "10px";
+            preview.style.backgroundColor = "#ffed00";
+            preview.style.color = "#333";
+            preview.style.display = "inline-block";
+            preview.style.textAlign = "center";
+            previewContainer.appendChild(preview);
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = reader.result;
+            };
+            reader.readAsDataURL(selectedFiles[i]);
+        }
+    };
+
+    fileChangedHandler(e) {
+        const files = e.target.files;
+
+        console.log("fileChangedHandler에 진입! e.target.files는", files);
+
+        this.setState({
+            selectedFiles: files
+        });
+    };
 
     getEXIF(imageFile) {
         this.setState({
@@ -113,67 +109,70 @@ class ReviewCreateView extends Component {
 
     render() {
         return (
-            <div>
+            <div id="allContainer" >
                 {/* 아래는 사진 EXIF 가져오기 위한 코드 두줄 */}
                 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/exif-js"></script>
                 <script src="vendors/exif-js/exif-js"></script>
                 <form onSubmit={function (e) {
                     e.preventDefault(); // 기존 onSubmit 기능 prevent => 새로고침 안되도록!
 
-                    var date = new Date();
-                    var curDate = date.toLocaleString();
-                    var postData = {
-                        title: e.target.title.value,
-                        content: e.target.content.value,
-                        image: this.state.file,
-                        id: this.props.user.userId,
-                        posted_date: curDate,
-                        pw: this.props.user.userPw,
-                        lat: this.state.wtmX,
-                        lng: this.state.wtmY,
-                    }
+                    // var date = new Date();
+                    // var curDate = date.toLocaleString();
+                    // var postData = {
+                    //     title: e.target.title.value,
+                    //     content: e.target.content.value,
+                    //     image: this.state.file,
+                    //     id: this.props.user.userId,
+                    //     posted_date: curDate,
+                    //     pw: this.props.user.userPw,
+                    //     lat: this.state.wtmX,
+                    //     lng: this.state.wtmY,
+                    // }
 
-                    console.log("this image's lat and lng is", this.state.wtmX, this.state.wtmY);
+                    // console.log("this image's lat and lng is", this.state.wtmX, this.state.wtmY);
 
 
-                    if (postData.title === "") {
-                        alert('제목을 입력하세요.')
-                    } else if (postData.content === "") {
-                        alert('내용을 입력해주세요.') // 나중에 내용 비어도 괜찮냐고 물어보는 confirm 띄우기
-                        // if(confirm){
-                        //     postDate.content="";
-                        // }
-                    } else if (postData.image === "") {
-                        alert('사진이 없습니다.')
-                    } else {
-                        this.props.onSubmit(postData);
-                        alert('Posted');
-                    }
+                    // if (postData.title === "") {
+                    //     alert('제목을 입력하세요.')
+                    // } else if (postData.content === "") {
+                    //     alert('내용을 입력해주세요.') // 나중에 내용 비어도 괜찮냐고 물어보는 confirm 띄우기
+                    //     // if(confirm){
+                    //     //     postDate.content="";
+                    //     // }
+                    // } else if (postData.image === "") {
+                    //     alert('사진이 없습니다.')
+                    // } else {
+                    //     this.props.onSubmit(postData);
+                    //     alert('Posted');
+                    // }
                 }.bind(this)}>
-                    <p>
-                        사진을 선택해주세요 : <input type="file" id="image" name="image" accept="image/*" multiple onChange={function (e) {
-
+                    <div className="item">
+                        <label for="images">사진</label>
+                        <div id="preview-container" style={{ padding: "50px", overflowX: "auto", whiteSpace: "nowrap", textAlign: "center" }} />
+                        <input type="file" id="image" name="image" accept="image/*" multiple onChange={function (e) {
                             if (e.target.files) {
-                                this.readMultipleImage(e.target);
-                                this.getEXIF(e.target.files[0]);
+                                this.fileChangedHandler(e);
+                                this.getEXIF(e.target.files[0]); // 첫번째 사진의 위치 정보 가져옴.
                             }
                         }.bind(this)}></input>
-                    </p>
-                    <p>
-                        제목 : <input type="text" name="title" placeholder="제목"></input>
-                    </p>
+                    </div>
+                    <div className="item">
+                        <label for="title">제목</label>
+                        <input type="text" name="title" placeholder="제목"></input>
+                    </div>
                     {/* <p>
                         작성자 : <input type="text" name="id" placeholder="작성자명"></input>
                     
                         &nbsp; &nbsp; &nbsp; 비밀번호 : <input type="password" name="pw" placeholder="비밀번호"></input>
                     </p> */}
-                    <p>
+                    <div className="item">
+                        <label for="content">내용</label>
                         <textarea style={{ width: '500px', height: '200px' }}
                             name="content" placeholder="내용을 입력해주세요"></textarea>
-                    </p>
-                    <p>
+                    </div>
+                    <div className="item">
                         <input type="submit" value="Post"></input>
-                    </p>
+                    </div>
                 </form>
             </div>
         );
