@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import React, { Component } from 'react';
 import EXIF from 'exif-js'
 import './index.css'
+import StarRatingComponent from 'react-star-rating-component';
 
 class ReviewCreateView extends Component {
     constructor(props) {
@@ -14,9 +15,11 @@ class ReviewCreateView extends Component {
             imagePreView: null,
 
             selectedFiles: null,
+            rating: 4,
         }
     }
     componentDidUpdate = prevState => {
+        console.log("컴포넌트가 업데이트 되었습니다!");
         if (prevState.selectedFiles !== this.state.selectedFiles) {
             this.renderPreviews();
         }
@@ -25,23 +28,31 @@ class ReviewCreateView extends Component {
     renderPreviews = () => {
         const selectedFiles = this.state.selectedFiles;
         console.log(selectedFiles);
-        const previewContainer = document.getElementById("preview-container");
-        for (let i = 0; i < selectedFiles.length; i++) {
-            const preview = document.createElement("img");
-            preview.id = `preview_${i}`;
-            preview.style.height = "200px";
-            preview.style.padding = "10px";
-            preview.style.margin = "10px";
-            preview.style.backgroundColor = "#ffed00";
-            preview.style.color = "#333";
-            preview.style.display = "inline-block";
-            preview.style.textAlign = "center";
-            previewContainer.appendChild(preview);
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                preview.src = reader.result;
-            };
-            reader.readAsDataURL(selectedFiles[i]);
+        if (selectedFiles) {
+            const previewContainer = document.getElementById("preview-container");
+
+            // 이미 보이는 미리보기 이미지 모두 삭제
+            while (previewContainer.hasChildNodes()) {
+                previewContainer.removeChild(previewContainer.firstChild);
+            }
+
+            for (let i = 0; i < selectedFiles.length; i++) {
+                const preview = document.createElement("img");
+                preview.id = `preview_${i}`;
+                preview.style.height = "200px";
+                preview.style.padding = "10px";
+                preview.style.margin = "10px";
+                preview.style.backgroundColor = "#ffed00";
+                preview.style.color = "#333";
+                preview.style.display = "inline-block";
+                preview.style.textAlign = "center";
+                previewContainer.appendChild(preview);
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = reader.result;
+                };
+                reader.readAsDataURL(selectedFiles[i]);
+            }
         }
     };
 
@@ -107,7 +118,14 @@ class ReviewCreateView extends Component {
         });
     }
 
+    onStarClick(nextValue, prevValue, name) {
+        this.setState({ rating: nextValue });
+    }
+
     render() {
+
+        const { rating } = this.state;
+
         return (
             <div id="allContainer" >
                 {/* 아래는 사진 EXIF 가져오기 위한 코드 두줄 */}
@@ -169,6 +187,14 @@ class ReviewCreateView extends Component {
                         <label for="content">내용</label>
                         <textarea style={{ width: '500px', height: '200px' }}
                             name="content" placeholder="내용을 입력해주세요"></textarea>
+                    </div>
+                    <div className="item">
+                        <StarRatingComponent
+                            name="rate1"
+                            starCount={5}
+                            value={rating}
+                            onStarClick={this.onStarClick.bind(this)}
+                        />
                     </div>
                     <div className="item">
                         <input type="submit" value="Post"></input>
