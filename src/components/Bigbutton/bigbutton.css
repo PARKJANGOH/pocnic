@@ -1,0 +1,50 @@
+.container {
+  padding: 2em;
+}
+
+/* GENERAL BUTTON STYLING */
+.btn,
+.btn::after {
+  -webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.btn {
+  background: none;
+  border: 3px solid rgb(163, 47, 173);
+  border-radius: 5px;
+  color: rgb(163, 47, 173);
+  display: block;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin: 1em auto;
+  padding: 2em 6em;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.btn::before,
+.btn::after {
+  background: rgb(163, 47, 173);
+  content: '';
+  position: absolute;
+  z-index: -1;
+}
+
+.btn:hover {
+  color: #d1d3da;
+}
+
+/* BUTTON 1 */
+.btn-1::after {
+  height: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.btn-1:hover:after {
+  height: 100%;
+}
