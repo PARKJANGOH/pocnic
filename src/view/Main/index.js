@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+
+export default function MainView() {
+    return <div>
+   
+=======
 import { Link } from 'react-router-dom'
 import BigButton from '../../components/Bigbutton'
 
@@ -20,5 +26,6 @@ export default function MainView() {
                 </Link>
             </div>
         </div>
+>>>>>>> 90049f1acdcbf60a63eeae5254d201b42447199a
     </div>
 }

@@ -8,6 +8,7 @@ import AuthRegisterView from "./view/Auth/Register";
 import AuthLoginView from "./view/Auth/Login";
 import MainView from "./view/Main";
 import MypageHomeView from "./view/Mypage/Home";
+import MypageLikeView from "./view/Mypage/like"
 import MypageSettingView from "./view/Mypage/Setting";
 import NearView from "./view/Near";
 import ReviewCreateView from "./view/Review/Create";
@@ -49,6 +50,9 @@ export default function App() {
           </Route>
           <Route path="/mypage/home">
             <MypageHomeView />
+          </Route>
+          <Route path="/mypage/like">
+           < MypageLikeView/>
           </Route>
           <Route path="/mypage/setting">
             <MypageSettingView />
