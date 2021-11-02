@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from "react-bootstrap";
 import React, { Component } from 'react';
@@ -208,3 +209,5 @@ class ReviewCreateView extends Component {
 }
 
 export default ReviewCreateView;
+=======
+>>>>>>> auth

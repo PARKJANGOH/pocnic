@@ -8,12 +8,14 @@ import AuthRegisterView from "./view/Auth/Register";
 import AuthLoginView from "./view/Auth/Login";
 import MainView from "./view/Main";
 import MypageHomeView from "./view/Mypage/Home";
+import MypageLikeView from "./view/Mypage/like"
 import MypageSettingView from "./view/Mypage/Setting";
 import NearView from "./view/Near";
 import ReviewCreateView from "./view/Review/Create";
 import ReviewReferView from "./view/Review/Refer";
 import ReviewUpdateView from "./view/Review/Update";
 import SearchView from "./view/Search";
+import Header from "./components/header";
 
 
 // auth
@@ -35,10 +37,7 @@ export default function App() {
     <Router>
       <div>
         <header>
-          <span>POCNIC</span>
-          <button>review 작성</button>
-          <button>마이페이지</button>
-          <button>리뷰작성</button>
+          <Header />
         </header>
         <Switch>
           <Route path="/auth/register">
@@ -49,6 +48,9 @@ export default function App() {
           </Route>
           <Route path="/mypage/home">
             <MypageHomeView />
+          </Route>
+          <Route path="/mypage/like">
+           < MypageLikeView/>
           </Route>
           <Route path="/mypage/setting">
             <MypageSettingView />
