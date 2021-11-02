@@ -8,7 +8,6 @@ import { Layout, Menu, Breadcrumb } from "antd";
 import { UserOutlined, LaptopOutlined } from "@ant-design/icons";
 import "../../../../src/components/main.css";
 import { Image } from "antd";
-
 export default function MypageHomeView() {
   const { SubMenu } = Menu;
 
@@ -36,7 +35,7 @@ export default function MypageHomeView() {
             defaultSelectedKeys={["2"]}
             height={100}
           >
-            <div>THIS IS PAGE FOR OHJANGPARK!!</div>
+            <div>This page is for Ohjangpark.</div>
           </Menu>
         </Header>
         <Content style={{ padding: "0 50px" }}>
@@ -100,7 +99,7 @@ export default function MypageHomeView() {
         </Footer>
       </Layout>
     );
-  } else if (write == 2) {
+  } else if (write === 2) {
     return (
       <Layout>
         <Header className="header">
