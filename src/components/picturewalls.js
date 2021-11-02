@@ -1,9 +1,6 @@
 import { Upload, Modal } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { Component } from "react";
-import YJ from "/home/dmsgk724/pocnic/src/img/상윤쓰프로필.jpg";
-import SY from "/home/dmsgk724/pocnic/src/img/유진쓰프로필.jpg";
-import EH from "/home/dmsgk724/pocnic/src/img/은하쓰프로필.jpg";
 function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();

@@ -25,12 +25,7 @@
   text-transform: uppercase;
 }
 
-<<<<<<< HEAD
 .btn::before{
-=======
-.btn::before,
-.btn::after {
->>>>>>> auth
   background: rgb(163, 47, 173);
   content: '';
   position: absolute;
@@ -42,25 +37,17 @@
 }
 
 /* BUTTON 1 */
-<<<<<<< HEAD
 .btn::after {
   background: rgb(163, 47, 173);
   content: '';
   position: absolute;
   z-index: -1;
-=======
-.btn-1::after {
->>>>>>> auth
   height: 0;
   left: 0;
   top: 0;
   width: 100%;
 }
 
-<<<<<<< HEAD
 .btn:hover:after {
-=======
-.btn-1:hover:after {
->>>>>>> auth
   height: 100%;
 }

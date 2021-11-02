@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button } from "react-bootstrap";
 import React, { Component } from 'react';
 import EXIF from 'exif-js'
 import './index.css'
@@ -209,5 +207,3 @@ class ReviewCreateView extends Component {
 }
 
 export default ReviewCreateView;
-=======
->>>>>>> auth
