@@ -11,16 +11,18 @@
     height:min-content;
 }
 
-div.left {
+div.nearleft {
     float: left;
     box-sizing: border-box;
     align-items: flex-start;
     border-right: 0.5px solid gray;
+    width:30%;
 }
 
-div.right {
+div.nearright {
     float: right;
     box-sizing: border-box;
+    width:70%;
 }
 
 .MapSection {

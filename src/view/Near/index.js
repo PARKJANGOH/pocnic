@@ -5,12 +5,15 @@ import { Row, Col, Divider } from 'antd';
 import { List, Avatar } from 'antd';
 import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
 import React, { useState } from "react";
+import KakaoMap from './kakaoMap';
+import SampleImage from "../../../src/img/음식사진샘플.jpg";
 
 
 import './index.css'
 
 const { Search } = Input;
 
+// const [searchWord, setSearchWord] = useState();
 const onSearch = value => console.log(value);
 
 const listData = [];
@@ -34,9 +37,10 @@ const IconText = ({ icon, text }) => (
 );
 
 
-export default function NearView() {
 
+export default function NearView() {
     const [nearKm, setNearKm] = useState(5);
+
     const onDownButtonClick = () => {
         if (nearKm > 0)
             setNearKm(nearKm - 1);
@@ -46,13 +50,15 @@ export default function NearView() {
             setNearKm(nearKm + 1);
     }
 
+
     return (
         <div className="nearContainer">
-            <div className="items left">
+            <div className="items nearleft">
                 <Space direction="vertical">
-                    <Search placeholder="검색어를 입력해주세요." allowClear size="large" enterButton="Search" onSearch={onSearch} enterButton />
+                    <Search placeholder="검색어를 입력해주세요." allowClear onSearch={onSearch} enterButton />
                     <div className="MapSection">
                         지도 영역
+                        <KakaoMap></KakaoMap>
                     </div>
                     <div className="ButtonSection">
                         <Row justify="center">
@@ -68,7 +74,7 @@ export default function NearView() {
 
                 </Space>
             </div >
-            <div className="items right">
+            <div className="items nearright">
 
 
 
@@ -103,7 +109,7 @@ export default function NearView() {
                                     <img
                                         width={150}
                                         alt="logo"
-                                        src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                                        src={SampleImage}
                                     />
                                 }
                             >
