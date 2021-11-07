@@ -1,7 +1,9 @@
-import Search from "antd/lib/transfer/search";
+import SearchBar from "../../components/searchbar"
+import SearchList from "../../components/searchlist"
 
 export default function SearchView() {
-    return <div>
-        <Search className="searchbox" placeholder="input search text"></Search>
+    return <div style={{ padding: "30px" }}>
+        <div style={{ padding: "16px" }}><SearchBar /></div>
+        <SearchList />
     </div>
 }
