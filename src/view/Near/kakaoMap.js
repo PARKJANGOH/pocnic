@@ -4,16 +4,16 @@ import React, { useEffect } from 'react'
 const KakaoMap = (searchWord) => {
 
     useEffect(() => {
-        var container = document.getElementById('map');
-        var options = {
+        const container = document.getElementById('map');
+        const options = {
             center: new kakao.maps.LatLng(36.01508134061981, 129.3225570661101),
             level: 3
         };
-        var map = new kakao.maps.Map(container, options);
+        const map = new kakao.maps.Map(container, options);
 
         //markerPosition에 marker 설치
-        var markerPosition = new kakao.maps.LatLng(36.01508134061981, 129.3225570661101);
-        var marker = new kakao.maps.Marker({
+        const markerPosition = new kakao.maps.LatLng(36.01508134061981, 129.3225570661101);
+        const marker = new kakao.maps.Marker({
             position: markerPosition
         });
         marker.setMap(map);
@@ -21,7 +21,7 @@ const KakaoMap = (searchWord) => {
 
         // if (searchWord !== undefined) {
         //     //검색창 구현
-        //     var ps = new kakao.maps.services.Places();
+        //     const ps = new kakao.maps.services.Places();
         //     // 키워드로 장소를 검색합니다
         //     ps.keywordSearch('이태원 맛집', placesSearchCB);
         // }
@@ -31,7 +31,7 @@ const KakaoMap = (searchWord) => {
 
         //         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         //         // LatLngBounds 객체에 좌표를 추가합니다
-        //         var bounds = new kakao.maps.LatLngBounds();
+        //         const bounds = new kakao.maps.LatLngBounds();
 
         //         for (var i = 0; i < data.length; i++) {
         //             displayMarker(data[i]);
@@ -48,7 +48,7 @@ const KakaoMap = (searchWord) => {
         // function displayMarker(place) {
 
         //     // 마커를 생성하고 지도에 표시합니다
-        //     var marker = new kakao.maps.Marker({
+        //     const marker = new kakao.maps.Marker({
         //         map: map,
         //         position: new kakao.maps.LatLng(place.y, place.x)
         //     });
