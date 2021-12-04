@@ -21,3 +21,13 @@
   font-size: 20px;
   font-weight: 900;
 }
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* display: grid;
+  place-items: center; */
+  min-height: 80vh;
+}

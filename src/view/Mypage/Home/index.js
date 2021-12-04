@@ -89,7 +89,7 @@ export default function MypageHomeView() {
                 </Menu.Item>
               </SubMenu>
               <SubMenu key="sub3" icon={<LaptopOutlined />} title="SETTING">
-                <Link to="mypage/setting">
+                <Link to="setting">
                   <Menu.Item key="5">SETTING</Menu.Item>
                 </Link>
               </SubMenu>
