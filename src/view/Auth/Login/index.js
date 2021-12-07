@@ -23,15 +23,17 @@ export default function AuthLoginView() {
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
-      <Button
-        variant="primary"
-        type="submit"
-        onClick={() => alert("잘못 입력하셨습니다!")}
-      >
-        Submit
-      </Button>
-      <Link to="./Main">
-        <Button type="submit">LOGIN</Button>
+      <Link>
+        <Button
+          variant="primary"
+          type="submit"
+        // onClick={() => alert("잘못 입력하셨습니다!")}
+        >
+          Login
+        </Button>
+      </Link>
+      <Link to="./register">
+        <Button type="submit">Register</Button>
       </Link>
     </Form>
   );
