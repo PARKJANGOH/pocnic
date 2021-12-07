@@ -6,7 +6,7 @@ import StarRatingComponent from 'react-star-rating-component';
 import { Form, Input, Button, Rate, Upload } from 'antd';
 import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
 import PicturesWall from "../../../../src/components/picturewalls.js"; // 은하가 만든 component 사용
-
+import axios from 'axios';
 
 
 const layout = {
@@ -41,7 +41,19 @@ const validateMessages = {
 
 export default function ReviewCreateView() {
     const onFinish = (values) => {
-        console.log(values);
+        const contents = values.user.content;
+        console.log("%content is: ", "color:green", values.user);
+        // axios.post({
+        //     'content': content
+        // }).then(resp)
+        const user = {
+            "userName": "weproejfslkejfij",
+            "userID": values.user.title,
+            "email": "dsfe@xyz.com",
+            "pw": "sdfae"
+        };
+        axios.post('http://localhost:3000/sign_up', user)
+            .then(res => { alert(JSON.stringify(res)) });
     };
 
     return (

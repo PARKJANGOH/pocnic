@@ -8,7 +8,7 @@ let SpritesmithPlugin = require("webpack-spritesmith");
 
 var isDebug = true;
 
-function flagsNameTempl(data) {}
+function flagsNameTempl(data) { }
 let spritePlugin = new SpritesmithPlugin({});
 
 module.exports = {
@@ -98,8 +98,7 @@ module.exports = {
         test: /theme.scss$/,
         loaders: [
           "style-loader",
-          `css-loader?${
-            isDebug ? "sourceMap&" : "minimize&"
+          `css-loader?${isDebug ? "sourceMap&" : "minimize&"
           }modules&localIdentName=[local]&importLoaders=2`,
           "sass-loader",
         ],
@@ -112,9 +111,8 @@ module.exports = {
             loader: "style-loader",
           },
           {
-            loader: `css-loader?${
-              isDebug ? "sourceMap&" : "minimize&"
-            }importLoaders=2`,
+            loader: `css-loader?${isDebug ? "sourceMap&" : "minimize&"
+              }importLoaders=2`,
           },
           {
             loader: "postcss-loader",
@@ -133,10 +131,8 @@ module.exports = {
         exclude: [/theme.scss$/, /application.scss$/],
         use: [
           "isomorphic-style-loader",
-          `css-loader?${
-            isDebug ? "sourceMap&" : "minimize&"
-          }modules&localIdentName=${
-            isDebug ? "[name]_[local]_[hash:base64:3]" : "[hash:base64:4]"
+          `css-loader?${isDebug ? "sourceMap&" : "minimize&"
+          }modules&localIdentName=${isDebug ? "[name]_[local]_[hash:base64:3]" : "[hash:base64:4]"
           }&importLoaders=2`,
           {
             loader: "postcss-loader",
@@ -151,7 +147,7 @@ module.exports = {
   },
 
   devServer: {
-    port: 4000, // 혹은 자신이 설정한 포트번호
+    port: 3000, // 혹은 자신이 설정한 포트번호
     open: true,
     proxy: {
       "/": "http://localhost",
