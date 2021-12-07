@@ -16,13 +16,13 @@ div.nearleft {
     box-sizing: border-box;
     align-items: flex-start;
     border-right: 0.5px solid gray;
-    width:30%;
+    width:40%;
 }
 
 div.nearright {
     float: right;
     box-sizing: border-box;
-    width:70%;
+    width:60%;
 }
 
 .MapSection {
