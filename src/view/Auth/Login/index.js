@@ -1,15 +1,22 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import axios from 'axios';
 export default function AuthLoginView() {
   const [error, setError] = useState(0);
 
+  useEffect(()=>{
+    axios.get('/auth/login')
+    .then(res=>console.log(res))
+
+  },[]);
+
+ 
   return (
     <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
+        <Form.Label >Email address</Form.Label>
         <Form.Control type="email" placeholder="Enter email" />
         <Form.Text className="text-muted">
           We'll never share your email with anyone else.
@@ -23,15 +30,16 @@ export default function AuthLoginView() {
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
+      <Link to ="./main">
       <Button
         variant="primary"
         type="submit"
-        onClick={() => alert("잘못 입력하셨습니다!")}
       >
-        Submit
+       Login
       </Button>
-      <Link to="./Main">
-        <Button type="submit">LOGIN</Button>
+      </Link>
+      <Link to="./register">
+        <Button type="submit" >Register</Button>
       </Link>
     </Form>
   );

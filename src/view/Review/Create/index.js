@@ -52,7 +52,7 @@ export default function ReviewCreateView() {
             "email": "dsfe@xyz.com",
             "pw": "sdfae"
         };
-        axios.post('http://localhost:3000/sign_up', user)
+        axios.post('http://localhost:4000/sign_up', user)
             .then(res => { alert(JSON.stringify(res)) });
     };
 
