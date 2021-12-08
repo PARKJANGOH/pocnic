@@ -56,7 +56,7 @@ const Signup = () => {
   const [password, onChangePassword] = useInput("");
 
   return (
-    <>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Form onSubmit={onSubmit} style={{ padding: 10 }}>
         <div>
           <label htmlFor="user-email">*Email</label>
@@ -121,7 +121,7 @@ const Signup = () => {
           </Link>
         </div>
       </Form>
-    </>
+    </div>
   );
 };
 //ID와 비번
