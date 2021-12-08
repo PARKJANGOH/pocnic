@@ -1,40 +1,76 @@
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Form, Input, Button, Checkbox } from 'antd';
+
+
+
 
 export default function AuthLoginView() {
-  const [error, setError] = useState(0);
+  const onFinish = (values) => {
+    //   console.log('Success:', values);
+    //   const user = {
+    //     "userName": "weproejfslkejfij",
+    //     "userID": values.user.title,
+    //     "email": "dsfe@xyz.com",
+    //     "pw": "sdfae"
+    // };
+    // axios.post('http://localhost:4000/sign_up', user)
+    //     .then(res => { alert(JSON.stringify(res)) });
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
 
   return (
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Link>
-        <Button
-          variant="primary"
-          type="submit"
-        // onClick={() => alert("잘못 입력하셨습니다!")}
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <Form
+        name="loginForm"
+        initialValues={{
+          remember: true,
+        }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
+      >
+        <Form.Item
+          label="Username"
+          name="username"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your username!',
+            },
+          ]}
         >
-          Login
-        </Button>
-      </Link>
-      <Link to="./register">
-        <Button type="submit">Register</Button>
-      </Link>
-    </Form>
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your password!',
+            },
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
+
+        <Form.Item
+          name="remember"
+          valuePropName="checked"
+        >
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+        <Form.Item
+        >
+          <Button type="link" href="./register">
+            Register
+          </Button>
+          <Button type="primary" htmlType="submit">Login</Button>
+        </Form.Item>
+      </Form>
+    </div>
   );
 }

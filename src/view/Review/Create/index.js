@@ -41,18 +41,14 @@ const validateMessages = {
 
 export default function ReviewCreateView() {
     const onFinish = (values) => {
-        const contents = values.user.content;
-        console.log("%content is: ", "color:green", values.user);
-        // axios.post({
-        //     'content': content
-        // }).then(resp)
+
         const user = {
-            "userName": "weproejfslkejfij",
-            "userID": values.user.title,
-            "email": "dsfe@xyz.com",
-            "pw": "sdfae"
+            "bistroName": values.user.bistroName
         };
-        axios.post('http://localhost:3000/sign_up', user)
+        // axios.get('http://localhost:4000/review/create', bistro)
+        //     .then(res => { alert(JSON.stringify(res)) });
+        
+        axios.post('http://localhost:4000/bistro/create', user)
             .then(res => { alert(JSON.stringify(res)) });
     };
 
@@ -72,6 +68,17 @@ export default function ReviewCreateView() {
                     <Button icon={<UploadOutlined />}>사진 업로드</Button>
                 </Upload> */}
                         <PicturesWall />
+                    </Form.Item>
+                    <Form.Item
+                        name={['user', 'bistroName']}
+                        label="식당 이름"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                        >
+                        <Input />
                     </Form.Item>
                     <Form.Item
                         name={['user', 'title']}
