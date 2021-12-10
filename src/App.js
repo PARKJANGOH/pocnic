@@ -17,6 +17,7 @@ import ReviewUpdateView from "./view/Review/Update";
 import SearchView from "./view/Search";
 import Header from "./components/header";
 
+import axios from 'axios';
 
 // auth
 // -- login
@@ -33,6 +34,7 @@ import Header from "./components/header";
 // search
 
 export default function App() {
+
   return (
     <Router>
       <div>
