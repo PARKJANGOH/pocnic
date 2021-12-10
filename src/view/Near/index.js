@@ -9,6 +9,8 @@ import KakaoMap from './kakaoMap';
 import SampleImage from "../../../src/img/음식사진샘플.jpg";
 import SampleImage1 from "../../../src/img/음식샘플사진1.jpg";
 import SampleImage2 from "../../../src/img/음식샘플사진2.jpeg";
+import SampleImage3 from "../../../src/img/음식샘플사진3.jpg";
+
 
 
 import './index.css'
@@ -21,12 +23,20 @@ const onSearch = value => console.log(value);
 const listData = [];
 // 교수님께 보여드리기 용으로 작성한 코드
 listData.push({
+    href: '/bistros/1',
+    title: '깡통갈비',
+    avatar: 'https://joeschmoe.io/api/v1/random',
+    description: '주소: 경상북도 포항시 남구 형산강북로 75',
+    content: '사장님이 멋있고 갈비가 맛있는 소문난 갈비집. 오픈 시간에 맞춰가지 않으면 언제나 웨이팅이 필수이다.',
+    preview: SampleImage3
+})
+listData.push({
     href: '/bistros/2',
     title: '낚시꾼의 집',
     avatar: 'https://joeschmoe.io/api/v1/random',
     description: '주소: 경상북도 포항시 남구 효성로63번길 8',
-    content: '포항 효자동 가성비 좋은 회 맛집. 뭘 좀 아는 교수님들은 여기만 찾는다고.',
-    preview: SampleImage1
+    content: '포항 효자동 가성비 좋은 회 맛집. 뭘 좀 아시는 교수님들은 여기만 찾는다고.',
+    preview: SampleImage3
 })
 listData.push({
     href: '/bistros/3',
@@ -34,7 +44,7 @@ listData.push({
     avatar: 'https://joeschmoe.io/api/v1/random',
     description: '주소: 경상북도 포항시 남구 형산강북로 93',
     content: '남녀노소 누구나 좋아하는 인드라. 포크닉 개발자들은 인드라를 좋아한다.',
-    preview: SampleImage2
+    preview: SampleImage3
 })
 
 // for (let i = 0; i < 2; i++) {
@@ -114,7 +124,7 @@ export default function NearView() {
                         dataSource={listData}
                         footer={
                             <div>
-                                <b>원하는 맛집이 없나요?</b> (footer part)
+                                <b>원하는 맛집이 없나요?</b><a href="/review/create"> 직접 리뷰 등록하러 가기</a>
                             </div>
                         }
                         renderItem={item => (

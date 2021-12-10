@@ -25,19 +25,19 @@ class PicturesWall extends Component {
         uid: "-2",
         name: "image.png",
         status: "done",
-        url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
+        // url: "../img/음식사진샘플",
       },
       {
         uid: "-3",
         name: "image.png",
         status: "done",
-        url: "/home/dmsgk724/pocnic/src/img/유진쓰프로필.jpg",
+        // url: "../img/음식샘플사진2",
       },
       {
         uid: "-4",
         name: "image.png",
         status: "done",
-        url: "/home/dmsgk724/pocnic/src/img/은하쓰프로필.jpg",
+        // url: "/home/dmsgk724/pocnic/src/img/은하쓰프로필.jpg",
       },
       {
         uid: "-5",
