@@ -7,7 +7,6 @@ import { Form, Input, Button, Rate, Upload } from 'antd';
 import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
 import PicturesWall from "../../../../src/components/picturewalls.js"; // 은하가 만든 component 사용
 import axios from 'axios';
-import KakaoMapSearch from './kakaoMapSearch';
 import KakaoMap from './kakaomap';
 
 const { Search } = Input;
