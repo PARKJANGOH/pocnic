@@ -52,7 +52,7 @@ export default function App() {
             <MypageHomeView />
           </Route>
           <Route path="/mypage/like">
-           < MypageLikeView/>
+            < MypageLikeView />
           </Route>
           <Route path="/mypage/setting">
             <MypageSettingView />

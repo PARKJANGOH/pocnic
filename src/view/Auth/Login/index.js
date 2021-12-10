@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export default function AuthLoginView() {
   const onFinish = (values) => {
-    // console.log("%content is: ", "color:green", values.user);
+    console.log("%content is: ", "color:green", values.user);
     const user = {
       "userID": values.user.userID,
       "pw": values.user.pw
