@@ -83,10 +83,10 @@ class BistroView extends Component {
 
         const list = this.state.data;
         // const { all_page, page } = this.state;
-        const data = this.state.data;
+        const data = this.state.bistroName;
         return (
             <div className="List">
-                <title>{this.state.bistroName}</title>
+                <h1>{data}</h1>
                 <div className="list_grid list_tit">
                     <div> 제목 </div>
                     <div> 별점 </div>
