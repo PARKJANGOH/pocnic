@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../../components/main.css";
-import { Image } from "antd";
-import Contents from "../../components/contents";
+import { Rate } from "antd";
 import axios from "axios";
 
 //import { Route, Link, Switch } from "react-router-dom";
@@ -15,6 +14,7 @@ class BistroView extends Component {
         super(props);
         this.state = {
             data: [],
+            bistroName: ''
             //   page: 1,
             //   limit: 10,
             //   all_page: [],
@@ -23,15 +23,29 @@ class BistroView extends Component {
 
     componentWillMount() {
         this._getListData();
+        this.__getBiastroName();
         //this._setPage();
     }
 
     _getListData = async function () {
-
+        const url = window.location.href;
+        const id = url.split('/')[4];
         //데이터 가져오기
-        const total_list = await axios.get(`http://localhost:4000/review/reviewOf/2`);
+        const total_list = await axios.get(`http://localhost:4000/review/reviewOf/${id}`);
         console.log(total_list);
         this.setState({ data: total_list.data })
+    }
+
+    __getBiastroName = async function () {
+        const url = window.location.href;
+        const id = Number(url.split('/')[4]);
+        const name = await axios.get(`http://localhost:4000/bistro/name`, {
+            params: {
+                bistroID: id
+            }
+        });
+        console.log(name.data);
+        this.setState({ bistroName: name.data.bistroName })
     }
 
 
@@ -72,9 +86,10 @@ class BistroView extends Component {
         const data = this.state.data;
         return (
             <div className="List">
+                <title>{this.state.bistroName}</title>
                 <div className="list_grid list_tit">
                     <div> 제목 </div>
-                    <div> 조회수 </div>
+                    <div> 별점 </div>
                     <div className="acenter"> 날짜 </div>
                 </div>
                 {list
@@ -84,11 +99,11 @@ class BistroView extends Component {
                             <>
                                 <div className="list_grid list_data" key={key}>
                                     <div>
-                                        {" "}
-                                        <Link to={view_url}> {el.title} </Link>{" "}
+                                        <Link to={view_url}> {el.title} </Link>
                                     </div>
-                                    <div> </div>
-                                    <div className="acenter"> {el.rating} </div>
+                                    <div>
+                                        <Rate disabled defaultValue={el.rating} /></div>
+                                    <div className="acenter"> {el.createdAt} </div>
                                     {/* <Image.PreviewGroup>
                                         <Image width={400} height={500} src={el.img} />
                                     </Image.PreviewGroup> */}
