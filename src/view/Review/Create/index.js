@@ -45,11 +45,22 @@ export default function ReviewCreateView() {
         const user = {
             "bistroName": values.user.bistroName
         };
-        // axios.get('http://localhost:4000/review/create', bistro)
-        //     .then(res => { alert(JSON.stringify(res)) });
+
+        axios.get('http://localhost:4000/bistro/find', {
+            params: {
+                bistroName: values.user.bistroName
+            }
+        })
+            .then(res => {
+                alert(JSON.stringify(res));
+                if (res.data == '') {
+                    axios.post('http://localhost:4000/bistro/create', user)
+                        .then(res => { alert(JSON.stringify(res)) });
+                }
+                //res.dataValues 에 들어있음
+            });
         
-        axios.post('http://localhost:4000/bistro/create', user)
-            .then(res => { alert(JSON.stringify(res)) });
+        
     };
 
     return (
