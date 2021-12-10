@@ -23,6 +23,10 @@ export default function AuthLoginView() {
       });
   };
 
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <Form

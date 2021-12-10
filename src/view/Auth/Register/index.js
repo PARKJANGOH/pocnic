@@ -78,7 +78,7 @@ const Signup = () => {
   const [password, onChangePassword] = useInput("");
 
   return (
-    <>
+    <div>
       <Form onSubmit={onSubmit} style={{ padding: 10 }} onFinish={onFinish}>
         <br />
         <div>
@@ -166,7 +166,7 @@ const Signup = () => {
           </Button>
         </div>
       </Form>
-    </>
+    </div>
   );
 };
 //ID와 비번

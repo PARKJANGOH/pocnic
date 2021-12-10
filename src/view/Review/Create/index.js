@@ -41,18 +41,15 @@ const validateMessages = {
 
 export default function ReviewCreateView() {
     const onFinish = (values) => {
-        const contents = values.user.content;
-        console.log("%content is: ", "color:green", values.user);
-        // axios.post({
-        //     'content': content
-        // }).then(resp)
-        const user = {
-            "userName": "weproejfslkejfij",
-            "userID": values.user.title,
-            "email": "dsfe@xyz.com",
-            "pw": "sdfae"
+        console.log(values);
+        const search = {
+            "title": values.user.title,
+            "content": values.user.content,
+            "rating": values.rate,
+            "bistroID": 1,
+            "Reviewer": "jangyj"
         };
-        axios.post('http://localhost:4000/sign_up', user)
+        axios.post('http://localhost:4000/review/create', search)
             .then(res => { alert(JSON.stringify(res)) });
     };
 
