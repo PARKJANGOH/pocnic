@@ -48,17 +48,17 @@ export default function ReviewCreateView() {
 
         axios.get('http://localhost:4000/bistro/find', {
             params: {
-                bistroName: values.user.bistroName
+                bistroName: values.user.bistroName // => 나중에 bistro name이 아니라 카카오맵에서 가져온 placeID로 검색하도록 해야함.
             }
         })
-            .then(res => {
-                alert(JSON.stringify(res));
-                if (res.data == '') {
-                    axios.post('http://localhost:4000/bistro/create', user)
-                        .then(res => { alert(JSON.stringify(res)) });
-                }
-                //res.dataValues 에 들어있음
-            });
+        .then(res => {
+            alert(JSON.stringify(res));
+            if (res.data == '') { // 새로운 이름의 bistro 일 때 res의 data가 ''로 비어있다.
+                axios.post('http://localhost:4000/bistro/create', user)
+                    .then(res => { alert(JSON.stringify(res)) });
+            }
+            //res.dataValues 에 들어있음
+        });
         
         
     };
