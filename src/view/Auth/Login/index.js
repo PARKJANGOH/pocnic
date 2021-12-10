@@ -12,10 +12,12 @@ export default function AuthLoginView() {
       .post("http://localhost:4000/login", user)
       .then(function (response) {
         console.log(response);
-        if (response.data == "") {
+        if (response.data === "") {
           alert("없는 회원입니다! 먼저 회원 가입을 진행해주세요 ");
+          document.location.href = "/main";
         } else {
           alert("로그인이 완료되었습니다!");
+          document.location.href = "/main";
         }
       })
       .catch(function (error) {

@@ -16,8 +16,11 @@ const Signup = () => {
     axios
       .post("http://localhost:4000/sign_up", user)
       .then(function (response) {
-        if (response.status >= 200 && response.status <= 204) {
+        if (response.data === "AL") {
+          alert("이미 사용 중인 ID입니다.");
+        } else {
           alert("회원가입이 완료되었습니다!");
+          document.location.href = "/main";
         }
       })
       .catch(function (error) {
@@ -144,7 +147,11 @@ const Signup = () => {
               },
             ]}
           >
-            <Input value={passwordCheck} onChange={onChangePasswordChk} />
+            <Input
+              type="password"
+              value={passwordCheck}
+              onChange={onChangePasswordChk}
+            />
           </Form.Item>
           {passwordError && (
             <div style={{ color: "red" }}>비밀번호가 일치하지 않습니다.</div>
