@@ -18,6 +18,7 @@ import SearchView from "./view/Search";
 import Header from "./components/header";
 
 import axios from 'axios';
+import BistroView from "./view/Bistro";
 
 // auth
 // -- login
@@ -42,6 +43,9 @@ export default function App() {
           <Header />
         </header>
         <Switch>
+          <Route path='/bistros/:id'>
+            <BistroView />
+          </Route>
           <Route path="/auth/register">
             <AuthRegisterView />
           </Route>
@@ -52,7 +56,7 @@ export default function App() {
             <MypageHomeView />
           </Route>
           <Route path="/mypage/like">
-           < MypageLikeView/>
+            < MypageLikeView />
           </Route>
           <Route path="/mypage/setting">
             <MypageSettingView />

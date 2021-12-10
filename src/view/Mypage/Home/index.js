@@ -8,6 +8,7 @@ import { Layout, Menu, Breadcrumb } from "antd";
 import { UserOutlined, LaptopOutlined } from "@ant-design/icons";
 import "../../../../src/components/main.css";
 import { Image } from "antd";
+import axios from "axios";
 export default function MypageHomeView() {
   const { SubMenu } = Menu;
 
@@ -31,6 +32,7 @@ export default function MypageHomeView() {
     //서버에서 list만들어 오기
   } else if (write === 3 || write === 4) {
     app = <List />;
+
   }
   return (
     <Layout>
@@ -81,7 +83,11 @@ export default function MypageHomeView() {
                 icon={<UserOutlined />}
                 title="REVIEW"
               >
-                <Menu.Item key="3" onClick={() => setWrite(3)}>
+                <Menu.Item key="3" onClick={(req) => {
+                  setWrite(3);
+                  console.log(req);
+                  axios.get('http://localhost:4000/review/mypage');
+                }}>
                   WRITTENBY
                 </Menu.Item>
                 <Menu.Item key="4" onClick={() => setWrite(4)}>

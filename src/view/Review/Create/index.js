@@ -81,7 +81,7 @@ export default function ReviewCreateView() {
         }
         await getBistroID(values);
 
-        
+
         const review = {
             "title": values.user.title,
             "content": values.user.content,
@@ -94,17 +94,17 @@ export default function ReviewCreateView() {
             .then(res => {
                 console.log("결과:", res.data);
                 alert("게시물이 등록되었습니다!");
-                document.location.href="/main"
-        })
-        
-        
+                document.location.href = "/main"
+            })
+
+
     };
 
     return (
         <div style={{
             display: 'flex',
             justifyContent: 'center',
-            }}>
+        }}>
             <Form {...layout} name="nest-messages" layout="vertical" onFinish={onFinish} validateMessages={validateMessages}>
                 <Form.Item
                     name="upload"
@@ -125,14 +125,14 @@ export default function ReviewCreateView() {
                             required: true,
                         },
                     ]}
-                    >
+                >
                     <Input />
                 </Form.Item>
                 <Form.Item name={['user', 'place']} lable="장소">
                     {/* <KakaoMapSearch/> */}
                     <Search placeholder="input search text" onSearch={onSearch} enterButton />
-                    <br/>
-                    <KakaoMap search={searchValue}/>
+                    <br />
+                    <KakaoMap search={searchValue} />
                 </Form.Item>
                 <Form.Item
                     name={['user', 'title']}
