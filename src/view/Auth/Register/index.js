@@ -2,32 +2,31 @@ import React, { useState } from "react";
 import { Form, Input, Checkbox, Button } from "antd";
 import { Link } from "react-router-dom";
 
-import axios from 'axios';
+import axios from "axios";
 
 const Signup = () => {
-
   const onFinish = (values) => {
-    console.log("%content is: ", "color:green", values.user);
-    // axios.post({
-    //     'content': content
-    // }).then(resp)
+    console.log(values.user);
     const user = {
-      "userName": values.user.userName,
-      "userID": values.user.userID,
-      "email": values.user.email,
-      "pw": values.user.pw
+      userName: values.user.userName,
+      userID: values.user.userID,
+      email: values.user.email,
+      pw: values.user.pw,
     };
-    axios.post('http://localhost:4000/sign_up', user)
+    axios
+      .post("http://localhost:4000/sign_up", user)
       .then(function (response) {
-        if (response.status >= 200 && response.status <= 204) { alert("회원가입이 완료되었습니다!") }
-
+        if (response.data === "AL") {
+          alert("이미 사용 중인 ID입니다.");
+        } else {
+          alert("회원가입이 완료되었습니다!");
+          document.location.href = "/main";
+        }
       })
       .catch(function (error) {
         alert("이미 동일한 ID를 갖는 사용자가 있습니다. 다시 가입해주세요");
-      })
-
+      });
   };
-
 
   const [passwordCheck, setPasswordCheck] = useState("");
   const [term, setTerm] = useState(false);
@@ -81,83 +80,75 @@ const Signup = () => {
   const [nick, onChangeNick] = useInput("");
   const [password, onChangePassword] = useInput("");
 
-
   return (
     <div>
       <Form onSubmit={onSubmit} style={{ padding: 10 }} onFinish={onFinish}>
         <br />
         <div>
           <Form.Item
-            name={['user', 'email']}
+            name={["user", "email"]}
             label="이메일"
             rules={[
               {
                 required: true,
               },
             ]}
-
           >
             <Input onChange={onChangeEmail} />
           </Form.Item>
         </div>
         <div>
-
           <Form.Item
-            name={['user', 'userID']}
+            name={["user", "userID"]}
             label="아이디"
             rules={[
               {
                 required: true,
               },
             ]}
-
           >
             <Input onChange={onChangeNick} />
           </Form.Item>
         </div>
 
         <div>
-
           <Form.Item
-            name={['user', 'userName']}
+            name={["user", "userName"]}
             label="사용자 이름"
             rules={[
               {
                 required: true,
               },
             ]}
-
           >
             <Input onChange={onChangeEmail} />
           </Form.Item>
         </div>
         <div>
-
           <Form.Item
-            name={['user', 'pw']}
+            name={["user", "pw"]}
             label="암호"
             rules={[
               {
                 required: true,
               },
             ]}
-
           >
             <Input type="password" onChange={onChangePassword} />
           </Form.Item>
         </div>
         <div>
           <Form.Item
-            name={'confirm password'}
+            name={"confirm password"}
             label="confirm password"
             rules={[
               {
                 required: true,
               },
             ]}
-
           >
             <Input
+              type="password"
               value={passwordCheck}
               onChange={onChangePasswordChk}
             />
@@ -165,7 +156,6 @@ const Signup = () => {
           {passwordError && (
             <div style={{ color: "red" }}>비밀번호가 일치하지 않습니다.</div>
           )}
-
         </div>
         <div>
           <Checkbox name="user-term" value={term} onChange={onChangeTerm}>
@@ -178,11 +168,9 @@ const Signup = () => {
           )}
         </div>
         <div style={{ marginTop: 10 }}>
-
           <Button type="primary" htmlType="submit">
             가입하기
           </Button>
-
         </div>
       </Form>
     </div>
